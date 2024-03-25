@@ -19,6 +19,7 @@ namespace dmPermissions {
 
         jmethodID      m_Check;
         jmethodID      m_Request;
+        jmethodID      m_OpenNotificationsSettings;
 
     };
 
@@ -38,6 +39,7 @@ namespace dmPermissions {
     {
         g_permissions.m_Check = env->GetMethodID(cls, "check", "(Ljava/lang/String;)I");
         g_permissions.m_Request = env->GetMethodID(cls, "request", "([Ljava/lang/String;)V");
+        g_permissions.m_OpenNotificationsSettings = env->GetMethodID(cls, "open_notifications_settings", "()V");
     }
 
     void Initialize_Ext()
@@ -73,6 +75,14 @@ namespace dmPermissions {
         }
         env->CallVoidMethod(g_permissions.m_PermissionsJNI, g_permissions.m_Request, jPermissions);
         env->DeleteLocalRef(jPermissions);
+    }
+
+    void OpenNotificationsSettings()
+    {
+        dmAndroid::ThreadAttacher threadAttacher;
+        JNIEnv* env = threadAttacher.GetEnv();
+
+        env->CallVoidMethod(g_permissions.m_PermissionsJNI, g_permissions.m_OpenNotificationsSettings);
     }
 
 } //namespace dmPermissions

@@ -8,6 +8,7 @@ namespace dmPermissions {
 
     int Check(const char *permission);
     void Request(const char **permissions, int len);
+    void OpenNotificationsSettings();
 
 } //namespace dmPermissions
 

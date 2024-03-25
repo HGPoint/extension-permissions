@@ -3,7 +3,10 @@ package com.defold.permissions;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.provider.Settings;
+
 import androidx.core.content.ContextCompat;
 import androidx.core.app.ActivityCompat;
 import android.app.Fragment;
@@ -78,6 +81,12 @@ public class PermissionsJNI {
                 }
             });
         }
+    }
+
+    public void open_notifications_settings() {
+        Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+        intent.putExtra(Settings.EXTRA_APP_PACKAGE, activity.getPackageName());
+        activity.startActivity(intent);
     }
 
     // https://www.baeldung.com/java-json-escaping

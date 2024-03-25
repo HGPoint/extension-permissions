@@ -10,6 +10,7 @@ height = 640
 
 [project]
 title = extension-permissions
+dependencies#0 = https://github.com/andsve/dirtylarry/archive/master.zip
 
 [library]
 include_dirs = extension-permissions

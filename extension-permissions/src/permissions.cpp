@@ -44,10 +44,18 @@ namespace dmPermissions {
         return 1;
     }
 
+    static int Lua_OpenNotificationsSettings(lua_State* L)
+    {
+        DM_LUA_STACK_CHECK(L, 0);
+        OpenNotificationsSettings();
+        return 0;
+    }
+
     static const luaL_reg Module_methods[] =
     {
         {"check", Lua_Check},
         {"request", Lua_Request},
+        {"open_notifications_settings", Lua_OpenNotificationsSettings},
         {0, 0}
     };
 
