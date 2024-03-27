@@ -84,7 +84,8 @@ public class PermissionsJNI {
     }
 
     public void open_notifications_settings() {
-        Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+        String target_intent = Build.VERSION.SDK_INT < 26 ? Settings.ACTION_SETTINGS : Settings.ACTION_APP_NOTIFICATION_SETTINGS;
+        Intent intent = new Intent(target_intent);
         intent.putExtra(Settings.EXTRA_APP_PACKAGE, activity.getPackageName());
         activity.startActivity(intent);
     }
